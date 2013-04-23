@@ -14,4 +14,20 @@ ls
 vim README.md 
 git commit -a -m "readme"
 git push
+-----------------
+1. git push 的时候报错：
+error: The requested URL returned error: 403 while accessing https://jccode@github.com/chyblog/firstPhpSite.git/info/refs
+
+解决办法：
+出现上面的原因，大都是因为你没有登陆github帐号，所以没权限上传，所以就报错了。
+具体解决办法：
+查看你的项目目录下的 .git 目录下的 config文件，即 .git/config 文件。
+可以看到：
+[remote "origin"]
+        fetch = +refs/heads/*:refs/remotes/origin/*
+        url = https://github.com/chyblog/firstPhpSite.git
+
+把上面的url 修改为 url = https://yourUserName@github.com/chyblog/firstPhpSite.git
+然后再重新尝试一下。
+此时应该可以了。会弹出来要求你输入密码。 正确输入后，应该就能push了。
 =====
