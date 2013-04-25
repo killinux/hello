@@ -30,4 +30,5 @@ error: The requested URL returned error: 403 while accessing https://jccode@gith
 把上面的url 修改为 url = https://killinux@github.com/chyblog/firstPhpSite.git
 然后再重新尝试一下。
 此时应该可以了。会弹出来要求你输入密码。 正确输入后，应该就能push了。
+
 =====
