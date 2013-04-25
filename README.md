@@ -29,4 +29,5 @@ vimrc:
 syntax on
 set fileencoding=gb18030
 set fileencodings=utf-8,gb18030,utf-16,big5
+PATH=$PATH:/usr/libexec/git-core
 =====
