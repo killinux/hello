@@ -19,33 +19,6 @@ link insert_node(link t,int item){
                 t->r=insert_node(t->r,item);
         return t;
 }
-//void pprint(link t){
-//        if(t!=NULL){ 
-//	        printf("(");
-//                printf("%d",t->item);
-//                pprint(t->l);
-//                printf(",");
-//                pprint(t->r);
-//       		printf(")");
-//        }
-//	else{
-//		printf("%d",0);
-//	}
-//}
-//void pprint(link t){
-//	    printf("(");
-//    if(t!=NULL){ 
-////	if(t->l!=NULL||t->r!=NULL)
-////	{
-//	    printf("%d",t->item);
-//	    pprint(t->l);
-//	   // if(t->r!=NULL)
-//		printf(",");
-//	    pprint(t->r);
-////	}
-//    }
-//	    printf(")");
-//}
 void pprint(link t){  
         printf("(");  
         if(t!=NULL){   
