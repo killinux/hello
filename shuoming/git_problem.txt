@@ -1,0 +1,15 @@
+git push error: 
+error: The requested URL returned error: 403 while accessing
+ https://jccode@github.com/chyblog/firstPhpSite.git/info/refs 
+[remote "origin"] 
+fetch = +refs/heads/*:refs/remotes/origin/* 
+url = https://github.com/chyblog/firstPhpSite.git
+把上面的url 修改为 url = https://killinux@github.com/chyblog/firstPhpSite.git 然后再重新尝试一下。
+
+此时应该可以了。会弹出来要求你输入密码。 正确输入后，应该就能push了。
+url = https://killinux@github.com/chyblog/firstPhpSite.git 
+vimrc: syntax on
+set fileencoding=gb18030 
+set fileencodings=utf-8,gb18030,utf-16,big5
+
+PATH=$PATH:/usr/libexec/git-core

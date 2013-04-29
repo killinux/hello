@@ -20,11 +20,9 @@ error: The requested URL returned error: 403 while accessing https://jccode@gith
         fetch = +refs/heads/*:refs/remotes/origin/*
         url = https://github.com/chyblog/firstPhpSite.git
 
-°ÑÉÏÃæµÄurl ĞŞ¸ÄÎª url = https://killinux@github.com/chyblog/firstPhpSite.git
-È»ºóÔÙÖØĞÂ³¢ÊÔÒ»ÏÂ¡£
-´ËÊ±Ó¦¸Ã¿ÉÒÔÁË¡£»áµ¯³öÀ´ÒªÇóÄãÊäÈëÃÜÂë¡£ ÕıÈ·ÊäÈëºó£¬Ó¦¸Ã¾ÍÄÜpushÁË¡£
+ url = https://killinux@github.com/chyblog/firstPhpSite.git
 =====
-ª url = https://killinux@github.com/chyblog/firstPhpSite.git
+url = https://killinux@github.com/chyblog/firstPhpSite.git
 vimrc:
 syntax on
 set fileencoding=gb18030
