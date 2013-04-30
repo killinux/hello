@@ -145,3 +145,8 @@ clean:
 git clean -dxf          用于清除未跟踪文件。
 git clean -dnf          可以显示需要删除的文件，但不包括被.gitignore忽略的。
 git reset --hard HEAD   用于清除跟踪文件的修改。
+---------------------------
+
+git reset --hard origin/master
+git reset --hard  41fbd1
+git rm bstree.c
