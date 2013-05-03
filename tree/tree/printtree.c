@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MaxSize 100
+
+//Pstart是二叉树根结点在一行中的位置，一行最能打印124个字符，取其1/2。
+//如果你的屏不够宽的话，可以输出文本文件里， aa.exe>>aa.txt
 #define Pstart 62
-#define N 10
+
 typedef struct node //二叉树存储结构
 {
     int    key;
@@ -21,6 +24,10 @@ typedef struct pnode        //为打印二叉树建了一个结构。
 	space,                 //存储本节点打印位置
 	level;                 //存储本节点所在层次。
 }PBTNode;
+
+/*建立二叉树。
+  用括号表示法表示二叉树字符串，创建二叉树。
+  */	
 BTNode* CreateBTNode(char *s)
 {
     char ch;
@@ -85,6 +92,8 @@ int BTNodeHeight(BTNode *b)
     }
 }
 
+/*建立一个二叉树打印结点的信息，
+  只被int CreatePBTNode(BTNode *b,PBTNode *pqu[])调用*/
 void SetPBTNodeInfo(BTNode *b,PBTNode *parent,PBTNode *pb,int level,int lrflag)
 {
     int f=3;
@@ -146,7 +155,7 @@ void PBTNodePrint(PBTNode *pb[],int n,int h)
     {
 	for(i=0;i<pb[0]->space;i++)
 	    printf(" ");
-	printf("%d",pb[0]->data);
+	printf("%c",pb[0]->data);
 	printf("\n");
 	return;
     }
@@ -182,7 +191,7 @@ void PBTNodePrint(PBTNode *pb[],int n,int h)
 	p=pb[i];
 	for(;j<p->space;j++)
 	    printf(" ");
-	printf("%d",p->data);
+	printf("%c",p->data);
     }
     printf("\n");
 }
@@ -219,47 +228,22 @@ void DispBTree(BTNode *b)
     PBTNodePrint(levelpqu,j,high);
 
 }
-
-BTNode* NODE(int data,BTNode* l,BTNode* r){
-        BTNode* t=malloc(sizeof *t);
-        t->data=data;t->lchild=l;t->rchild=r;
-        return t;
-}
-BTNode* insert_node(BTNode* t,int data){
-        if(t==NULL) return  NODE(data,NULL,NULL);
-        if(data<t->data)
-                t->lchild=insert_node(t->lchild,data);
-        else
-                t->rchild=insert_node(t->rchild,data);
-        return t;
-}
-void pprint(BTNode* t){  
-        printf("(");  
-        if(t!=NULL){   
-                printf("%c",t->data);  
-                pprint(t->lchild);
-                pprint(t->rchild);
-        }  
-        printf(")");  
-}  
 void main(int argc,char* argv[])
 {
-  //  int iDepth=0,
-  //      iWidth=0,
-  //      iCount=0;
-  //  char *str1="A(B(D,E(H,X(J,K(L,M(T,Y))))),C(F,G(X,I)))";
+    int iDepth=0,
+	iWidth=0,
+	iCount=0;
+    char *str1="A(B(D,E(H,X(J,K(L,M(T,Y))))),C(F,G(X,I)))";
    // char *str1="(E(A()())(n(Y(N()())())()))";
  //   char str1[512];
  //char string[512];
 //        fgets(str1 ,512,stdin);
     char *str2="A(B(D(,G)),C(E,F))";
-//    BTNode *b=CreateBTNode(str1);
-    srand(time(NULL));
-    int i ;BTNode* root=NULL;
-    for(i=0;i<N;i++) root =insert_node(root,rand()%50+65);
-    DispBTNode(root);printf("\n");
-   // iDepth=BTNodeHeight(root);
-   // printf("Depth:%d\n",iDepth);
-    DispBTree(root);
+    BTNode *b=CreateBTNode(str1);
+    DispBTNode(b);printf("\n");
+    iDepth=BTNodeHeight(b);
+    printf("Depth:%d\n",iDepth);
+    DispBTree(b);
 }
+//发现一件事，认识我越久的人越喜欢我，................除了我自己
 

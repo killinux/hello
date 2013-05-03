@@ -146,7 +146,7 @@ void PBTNodePrint(PBTNode *pb[],int n,int h)
     {
 	for(i=0;i<pb[0]->space;i++)
 	    printf(" ");
-	printf("%d",pb[0]->data);
+	printf("%c",pb[0]->data);
 	printf("\n");
 	return;
     }
@@ -182,7 +182,7 @@ void PBTNodePrint(PBTNode *pb[],int n,int h)
 	p=pb[i];
 	for(;j<p->space;j++)
 	    printf(" ");
-	printf("%d",p->data);
+	printf("%c",p->data);
     }
     printf("\n");
 }
