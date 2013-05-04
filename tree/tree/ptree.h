@@ -1,0 +1,236 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MaxSize 100
+#define Pstart 62
+#define N 10
+typedef struct node *link;
+typedef struct node //二叉树存储结构
+{
+    int    key;
+    int    item;
+    struct node *l,
+		*r;
+}BTNode;
+typedef struct pnode        //为打印二叉树建了一个结构。
+{
+    int key;                   //关键字数据１
+    int item;                  //关键字数据２
+    struct pnode *l,      //左孩子
+		 *rchlid,      //右孩子
+		 *parent;      //父节点
+    int lrflag,                //标记本节点是左孩子（等于０时），还是右孩子（等于１时）
+	space,                 //存储本节点打印位置
+	level;                 //存储本节点所在层次。
+}PBTNode;
+BTNode* CreateBTNode(char *s)
+{
+    char ch;
+    BTNode *p=NULL,
+	   *b=NULL,
+	   *ps[MaxSize];
+    int top=-1,
+	tag=-1;
+    ch=*s;
+    while(ch)
+    {
+	switch(ch)
+	{
+	    case '(':ps[++top]=p;tag=1;break;
+	    case ',':tag=2;break;
+	    case ')':top--;break;
+	    default:
+		     p=(BTNode*)malloc(sizeof(BTNode));
+		     p->item=ch;
+		     p->l=p->r=NULL;
+		     if(b==NULL)
+			 b=p;
+		     else
+		     {
+			 switch(tag)
+			 {
+			     case 1:ps[top]->l=p;break;
+			     case 2:ps[top]->r=p;break;
+			 }
+		     }
+	}
+	ch=*(++s);
+    }
+    return b;
+}
+
+//用适号表示法打印二叉树。
+void DispBTNode(BTNode *b)
+{
+    if(b!=NULL)
+    {
+	printf("%d",b->item);
+	if(b->l!=NULL||b->r!=NULL)
+	{
+	    printf("(");
+	    DispBTNode(b->l);
+	    if(b->r!=NULL)printf(",");
+	    DispBTNode(b->r);
+	    printf(")");
+	}
+    }
+}
+int BTNodeHeight(BTNode *b)
+{
+    int lh,rh;
+    if(b==NULL)return 0;
+    else
+    {
+	lh=BTNodeHeight(b->l);
+	rh=BTNodeHeight(b->r);
+	return (lh>rh)?(lh+1):(rh+1);
+    }
+}
+
+void SetPBTNodeInfo(BTNode *b,PBTNode *parent,PBTNode *pb,int level,int lrflag)
+{
+    int f=3;
+    pb->item=b->item;
+    pb->key =b->key;
+    pb->parent=parent;
+    pb->level=level;
+    pb->lrflag=lrflag;
+    pb->space=-1;
+}
+
+/*用层次遍历法，BTNode结构存储的二叉树转换为，PBTNode结构的二叉树*/
+int CreatePBTNode(BTNode *b,PBTNode *pqu[])
+{
+    BTNode *p;
+    BTNode *qu[MaxSize];
+    int front=-1,
+	rear=-1;
+    rear++;
+    qu[rear]=b;
+    pqu[rear]=(PBTNode*)malloc(sizeof(PBTNode));
+    SetPBTNodeInfo(b,NULL,pqu[rear],1,-1);
+    while(rear!=front)
+    {
+	front++;
+	p=qu[front];
+	if(p->l!=NULL)
+	{
+	    rear++;
+	    qu[rear]=p->l;
+	    pqu[rear]=(PBTNode*)malloc(sizeof(PBTNode));
+	    SetPBTNodeInfo(p->l,pqu[front],pqu[rear],pqu[front]->level+1,0);
+	}
+	if(p->r!=NULL)
+	{
+	    rear++;
+	    qu[rear]=p->r;
+	    pqu[rear]=(PBTNode*)malloc(sizeof(PBTNode));
+	    SetPBTNodeInfo(p->r,pqu[front],pqu[rear],pqu[front]->level+1,1);
+	}
+    }
+    return rear;
+}
+
+//打印一层结点，及该层结点与父结点的连线路径。
+void PBTNodePrint(PBTNode *pb[],int n,int h)
+{
+    int l=-1,
+	r=0,
+	i,j,k,
+	end;
+    char c;
+    PBTNode *p;
+    if(n<=0||h<=0)
+    {
+	return;
+    }
+    else if(n==1)
+    {
+	for(i=0;i<pb[0]->space;i++)
+	    printf(" ");
+	printf("%d",pb[0]->item);
+	printf("\n");
+	return;
+    }
+    h=h-pb[0]->level+2;
+    for(k=0;k<h;k++)
+    {
+	j=0;
+	l--;
+	r++;
+
+	for(i=0;i<n;i++)//打印线条
+	{
+	    p=pb[i];
+	    end=(p->lrflag==0)?l:r;
+	    end+=p->parent->space;
+	    for(;j<end;j++)
+		printf(" ");
+	    c=(p->lrflag==0)?'/':'\\';
+	    printf("%c",c);
+	}
+	printf("\n");
+    }
+    for(i=0;i<n;i++)//计算本层结点打印位置
+    {
+	p=pb[i];
+	if(p->lrflag==0)
+	    p->space=p->parent->space+l;
+	else
+	    p->space=p->parent->space+r;
+    }
+    for(i=0,j=0;i<n;i++)//打印关键字数据
+    {
+	p=pb[i];
+	for(;j<p->space;j++)
+	    printf(" ");
+	printf("%d",p->item);
+    }
+    printf("\n");
+}
+//循环打印所有层的数据
+void DispBTree(BTNode *b)
+{
+    int n,i,j,high,
+	level;
+    PBTNode *p;
+    PBTNode *pqu[MaxSize];
+    PBTNode *levelpqu[MaxSize];
+    n=CreatePBTNode(b,pqu);
+    high=BTNodeHeight(b);
+    j=0;
+    level=1;
+    pqu[0]->space=Pstart;
+    for(i=0;i<=n;i++)
+    {
+	p=pqu[i];
+	if(p->level==level)
+	{
+	    levelpqu[j]=p;
+	    j++;
+	}
+	else
+	{
+	    PBTNodePrint(levelpqu,j,high);
+	    level=p->level;
+	    j=0;
+	    levelpqu[j]=p;
+	    j++;
+	}
+    }
+    PBTNodePrint(levelpqu,j,high);
+
+}
+
+BTNode* NODE(int item,BTNode* l,BTNode* r){
+        BTNode* t=malloc(sizeof *t);
+        t->item=item;t->l=l;t->r=r;
+        return t;
+}
+link insert_node(link t,int item){
+        if(t==NULL) return  NODE(item,NULL,NULL);
+        if(item<t->item)
+                t->l=insert_node(t->l,item);
+        else
+                t->r=insert_node(t->r,item);
+        return t;
+}
