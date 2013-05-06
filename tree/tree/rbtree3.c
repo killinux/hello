@@ -22,11 +22,12 @@ typedef struct pnode        //为打印二叉树建了一个结构。
 	space,                 //存储本节点打印位置
 	level;                 //存储本节点所在层次。
 }PBTNode;
+BTNode* null;
 BTNode* CreateBTNode(char *s)
 {
     char ch;
-    BTNode *p=NULL,
-	   *b=NULL,
+    BTNode *p=null,
+	   *b=null,
 	   *ps[MaxSize];
     int top=-1,
 	tag=-1;
@@ -41,8 +42,8 @@ BTNode* CreateBTNode(char *s)
 	    default:
 		     p=(BTNode*)malloc(sizeof(BTNode));
 		     p->item=ch;
-		     p->l=p->r=NULL;
-		     if(b==NULL)
+		     p->l=p->r=null;
+		     if(b==null)
 			 b=p;
 		     else
 		     {
@@ -61,14 +62,14 @@ BTNode* CreateBTNode(char *s)
 //用适号表示法打印二叉树。
 void DispBTNode(BTNode *b)
 {
-    if(b!=NULL)
+    if(b!=null)
     {
 	printf("%d",b->item);
-	if(b->l!=NULL||b->r!=NULL)
+	if(b->l!=null||b->r!=null)
 	{
 	    printf("(");
 	    DispBTNode(b->l);
-	    if(b->r!=NULL)printf(",");
+	    if(b->r!=null)printf(",");
 	    DispBTNode(b->r);
 	    printf(")");
 	}
@@ -77,7 +78,7 @@ void DispBTNode(BTNode *b)
 int BTNodeHeight(BTNode *b)
 {
     int lh,rh;
-    if(b==NULL)return 0;
+    if(b==null)return 0;
     else
     {
 	lh=BTNodeHeight(b->l);
@@ -112,14 +113,16 @@ int CreatePBTNode(BTNode *b,PBTNode *pqu[])
     {
 	front++;
 	p=qu[front];
-	if(p->l!=NULL)
+	if(p->l!=null)
 	{
 	    rear++;
 	    qu[rear]=p->l;
+		printf("btnode:begin %d\n",rear);
 	    pqu[rear]=(PBTNode*)malloc(sizeof(PBTNode));
+		printf("btnode:end\n");
 	    SetPBTNodeInfo(p->l,pqu[front],pqu[rear],pqu[front]->level+1,0);
 	}
-	if(p->r!=NULL)
+	if(p->r!=null)
 	{
 	    rear++;
 	    qu[rear]=p->r;
@@ -195,6 +198,7 @@ void DispBTree(BTNode *b)
     PBTNode *p;
     PBTNode *pqu[MaxSize];
     PBTNode *levelpqu[MaxSize];
+	printf("DispBtree\n");
     n=CreatePBTNode(b,pqu);
     high=BTNodeHeight(b);
     j=0;
@@ -221,16 +225,90 @@ void DispBTree(BTNode *b)
 
 }
 
-BTNode* NODE(int item,BTNode* l,BTNode* r){
+//BTNode* NODE(int item,BTNode* l,BTNode* r){
+//        BTNode* t=malloc(sizeof *t);
+//        t->item=item;t->l=l;t->r=r;
+//        return t;
+//}
+//BTNode* insert_node(BTNode* t,int item){
+//        if(t==NULL) return  NODE(item,NULL,NULL);
+//        if(item<t->item)
+//                t->l=insert_node(t->l,item);
+//        else
+//                t->r=insert_node(t->r,item);
+//        return t;
+//}
+//----------------------rbtree2.c
+BTNode* NODE(int item,BTNode* l,BTNode* r,int key){
         BTNode* t=malloc(sizeof *t);
-        t->item=item;t->l=l;t->r=r;
+        t->item=item;t->l=l;t->r=r;t->key=key;
         return t;
 }
-BTNode* insert_node(BTNode* t,int item){
-        if(t==NULL) return  NODE(item,NULL,NULL);
-        if(item<t->item)
-                t->l=insert_node(t->l,item);
-        else
-                t->r=insert_node(t->r,item);
+BTNode* rotR(BTNode* t){
+        BTNode* x=t->l;t->l=x->r;x->r=t;return x;
+}
+BTNode* rotL(BTNode* t){
+        BTNode* x=t->r;t->r=x->l;x->l=t;return x;
+}
+void pprint(BTNode* t){
+        printf("(");
+        if(t!=null){ 
+                printf("%d%c",t->item,t->key?'+':' ');
+                pprint(t->l);
+                pprint(t->r);
+        }
+        printf(")");
+}
+BTNode* RBinit(){
+        null=NODE(0,null,null,0);
+        null->l=null;null->r=null;
+        return null;
+}
+BTNode* insert_node(BTNode* t ,int item, int sw){
+        if(t==null) return NODE(item,null,null,1);
+        if(t->l->key && t->r->key){
+                t->key=1;t->l->key=0;t->r->key=0;
+        }
+        if(item<t->item){
+                t->l=insert_node(t->l,item,0);
+                if(t->key && t->l->key && sw) t=rotR(t);
+                if(t->l->key && t->l->l->key)
+                { t=rotR(t); t->key=0; t->r->key=1; }
+        }else{
+                t->r=insert_node(t->r,item,1);
+                if(t->key && t->r->key && !sw) t=rotL(t);
+                if(t->r->key && t->r->r->key)
+                { t=rotL(t); t->key=0; t->l->key=1; }
+        }
         return t;
+}
+BTNode* RBinsert(BTNode* root,int item){
+        root=insert_node(root,item,0);
+        root->key=0;
+        return root;
+}
+//int main(){
+//        int i=0;
+//        srand(time(NULL));
+//        BTNode* root=RBinit();
+//        for(i=0;i<N;i++)
+//                root=RBinsert(root,rand()%100);
+//        printf("\t\\tree");
+//        pprint(root);
+//        printf("\n");
+//        return 0;
+//}
+int main(){
+        int i=0;
+        srand(time(NULL));
+        BTNode* root=RBinit();
+        for(i=0;i<N;i++)
+                root=RBinsert(root,rand()%10);
+        printf("\t\\tree");
+        pprint(root);
+        printf("\n");
+
+        DispBTNode(root);printf("\n");
+        DispBTree(root);
+        return 0;
 }
