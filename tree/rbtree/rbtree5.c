@@ -3,7 +3,6 @@
 #define MaxSize 100
 #define Pstart 62
 #define N 10
-//typedef struct node *link;
 typedef struct node 
 {
     int    key;
@@ -15,31 +14,12 @@ typedef struct pnode
 {
     int key;                   
     int item;                  
-   // struct pnode *left,      
-//		 *right,     // this no need to use left ,right 
-//		 *parent;      
     struct pnode *parent;     
     int lrflag,                //left 0,right 1
 	space,                 //print point
 	level;                 //the node level
 }PBTNode;
 BTNode* null;//null node
-//print ()()
-void DispBTNode(BTNode *b)
-{
-    if(b!=null)
-    {
-	printf("%d",b->item);
-	if(b->l!=null||b->r!=null)
-	{
-	    printf("(");
-	    DispBTNode(b->l);
-	    if(b->r!=null)printf(",");
-	    DispBTNode(b->r);
-	    printf(")");
-	}
-    }
-}
 int BTNodeHeight(BTNode *b)
 {
     int lh,rh;
@@ -51,7 +31,6 @@ int BTNodeHeight(BTNode *b)
 	return (lh>rh)?(lh+1):(rh+1);
     }
 }
-
 void SetPBTNodeInfo(BTNode *b,PBTNode *parent,PBTNode *pb,int level,int lrflag)
 {
     int f=3;
@@ -62,7 +41,6 @@ void SetPBTNodeInfo(BTNode *b,PBTNode *parent,PBTNode *pb,int level,int lrflag)
     pb->lrflag=lrflag;
     pb->space=-3;
 }
-
 /*Level Order BTNode----->PBTNode*/
 int CreatePBTNode(BTNode *b,PBTNode *pqu[])
 {
@@ -82,9 +60,7 @@ int CreatePBTNode(BTNode *b,PBTNode *pqu[])
 	{
 	    rear++;
 	    qu[rear]=p->l;
-		printf("btnode:begin %d\n",rear);
 	    pqu[rear]=(PBTNode*)malloc(sizeof(PBTNode));
-		printf("btnode:end\n");
 	    SetPBTNodeInfo(p->l,pqu[front],pqu[rear],pqu[front]->level+1,0);
 	}
 	if(p->r!=null)
@@ -114,7 +90,7 @@ void PBTNodePrint(PBTNode *pb[],int n,int h)
     {
 	for(i=0;i<pb[0]->space;i++)
 	    printf(" ");
-                printf("%d%c",pb[0]->item,pb[0]->key?'+':' ');
+        printf("%d%c",pb[0]->item,pb[0]->key?'+':' ');
 	printf("\n");
 	return;
     }
@@ -161,7 +137,6 @@ void DispBTree(BTNode *b)
     PBTNode *p;
     PBTNode *pqu[MaxSize];
     PBTNode *levelpqu[MaxSize];
-	printf("DispBtree\n");
     n=CreatePBTNode(b,pqu);
     high=BTNodeHeight(b);
     j=0;
@@ -200,21 +175,12 @@ BTNode* rotR(BTNode* t){
 BTNode* rotL(BTNode* t){
         BTNode* x=t->r;t->r=x->l;x->l=t;return x;
 }
-void pprint(BTNode* t){
-        printf("(");
-        if(t!=null){ 
-                printf("%d%c",t->item,t->key?'+':' ');
-                pprint(t->l);
-                pprint(t->r);
-        }
-        printf(")");
-}
 BTNode* RBinit(){
         null=NODE(0,null,null,0);
         null->l=null;null->r=null;
         return null;
 }
-BTNode* insert_node(BTNode* t ,int item, int sw){
+BTNode* insert_node(BTNode* t ,int item, int sw){//sw是分左右的,key 0是黑，1是红
         if(t==null) return NODE(item,null,null,1);
         if(t->l->key && t->r->key){
                 t->key=1;t->l->key=0;t->r->key=0;
@@ -243,13 +209,6 @@ int main(){
         BTNode* root=RBinit();
         for(i=0;i<N;i++)
                 root=RBinsert(root,rand()%100);
-        printf("pprint:\n");
-        printf("\t\\tree");
-        pprint(root);
-        printf("\n");
-
-        printf("DispBtnode:\n");
-      	DispBTNode(root);printf("\n");
         printf("DispBTree:\n");
         DispBTree(root);
         return 0;
