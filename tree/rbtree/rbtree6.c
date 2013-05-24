@@ -180,7 +180,7 @@ BTNode* RBinit(){
         null->l=null;null->r=null;
         return null;
 }
-BTNode* insert_node(BTNode* t ,int item, int sw){//sw是分左右的,key 0是黑，1是红
+BTNode* insert_node(BTNode* t ,int item, int sw){//sw是分左右的 标记上一步是从哪边过来的0左，1右,key 0是黑，1是红
 	if(t==null) return NODE(item,null,null,1);
 	if(t->l->key && t->r->key){
 	    	printf("trace:t->l->key && t->r->key\n");
@@ -224,10 +224,10 @@ int main(){
 //                root=RBinsert(root,rand()%100);
         root=RBinsert(root,11);
         root=RBinsert(root,41);
-//        root=RBinsert(root,31);
-//        root=RBinsert(root,39);
-//        root=RBinsert(root,79);
-//        root=RBinsert(root,86);
+        root=RBinsert(root,31);
+        root=RBinsert(root,39);
+        root=RBinsert(root,79);
+        root=RBinsert(root,86);
 //        root=RBinsert(root,36);
 //        root=RBinsert(root,55);
 //        root=RBinsert(root,35);
