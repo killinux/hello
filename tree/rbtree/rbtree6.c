@@ -188,7 +188,7 @@ BTNode* insert_node(BTNode* t ,int item, int sw){//sw是分左右的 标记上�
         }
         if(item<t->item){
 		printf("item<t->item\n");
-                t->l=insert_node(t->l,item,0);
+                t->l=insert_node(t->l,item,0);//注意这的顺序，先insert，再下面的旋转和变色
                 if(t->key && t->l->key && sw){ 
 			t=rotR(t);
 		}
