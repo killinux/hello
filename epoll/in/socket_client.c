@@ -38,8 +38,9 @@ int main(int argc,char * argv[]){
 	if(numBytes<0){
 		perror("send() failed");
         exit(1);
-	}else{
-		perror("send() connection closed prematurely");
+	}else if(numBytes!=echoStringLen){
+		printf("this is a  %d",numBytes);
+		perror("send() connection closed prematurely !!!!!\n");
         exit(1);
 	}
 	fputs("Received:",stdout);	
