@@ -6,6 +6,7 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <string.h>
+#define  BUFSIZE 512
 int main(int argc,char * argv[]){
 	if(argc<3||argc>4){
 		perror("<Server address< <echo word> [server port]");
@@ -45,15 +46,14 @@ int main(int argc,char * argv[]){
 	}
 	fputs("Received:",stdout);	
 	unsigned int totalBytesRcv=0;
-	int BUFSIZE=512;
 	while(totalBytesRcv<echoStringLen){
 		char buffer[BUFSIZE];
 		numBytes=recv(sockfd,buffer,BUFSIZE-1,0);
 		if(numBytes<0){
 			perror("recv() failed");
        		 exit(1);
-		}else{
-			perror("recv() connection closed prematurely");
+		}else if(numBytes==0){
+			perror("recv() connection closed prematurely!!\n");
         	exit(1);
 		}
 		totalBytesRcv+=numBytes;
