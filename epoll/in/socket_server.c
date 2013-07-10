@@ -18,7 +18,6 @@ int main(int argc ,char * argv[]){
 	struct sockaddr_in server_address;
 	struct sockaddr_in client_address;
 	server_sockfd=socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
-	memset(&server_address,0,sizeof(server_address));
 	server_address.sin_family=AF_INET;
     server_address.sin_addr.s_addr=htonl(INADDR_ANY);
 	server_address.sin_port=htons(servPort);
@@ -33,7 +32,7 @@ int main(int argc ,char * argv[]){
 	}
 	while(1){
 		socklen_t client_len=sizeof(client_address);
-		int client_sockfd=accept(server_sockfd,(struct sockaddr *)&client_address,&client_len);
+		int client_sockfd=accept(server_sockfd,(struct sockaddr *)&server_address,&server_len);
 		if(client_sockfd<0){
 			perror("accept failed");
 			exit(1);
