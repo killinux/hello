@@ -1,3 +1,5 @@
+rpm -Uvh http://repo.webtatic.com/yum/centos/5/latest.rpm
+yum install --enablerepo=webtatic git-all
 hello
 git:
 mkdir hello
