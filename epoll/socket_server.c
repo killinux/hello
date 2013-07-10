@@ -24,8 +24,9 @@ int main(){
                 read(client_sockfd,&ch,1);
 				fputc(ch,stdout);
 				fputc('\n',stdout);
-                ch++;
+            //    ch++;
                 write(client_sockfd,&ch,1);
+				//fputc(ch,stdout);
                 close(client_sockfd);
 
         }
