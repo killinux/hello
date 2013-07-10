@@ -20,8 +20,10 @@ int main(){
                 char ch;
                 printf("server waiting\n");
                 client_len=sizeof(client_address);
-                client_sockfd=accept(server_sockfd,(struct sockaddr *)&server_address,server_len);
+                client_sockfd=accept(server_sockfd,(struct sockaddr *)&client_address,&client_len);
                 read(client_sockfd,&ch,1);
+				fputc(ch,stdout);
+				fputc('\n',stdout);
                 ch++;
                 write(client_sockfd,&ch,1);
                 close(client_sockfd);
