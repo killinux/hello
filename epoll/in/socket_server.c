@@ -32,7 +32,7 @@ int main(int argc ,char * argv[]){
 	}
 	while(1){
 		socklen_t client_len=sizeof(client_address);
-		int client_sockfd=accept(server_sockfd,(struct sockaddr *)&server_address,&server_len);
+		int client_sockfd=accept(server_sockfd,(struct sockaddr *)&client_address,&client_len);
 		if(client_sockfd<0){
 			perror("accept failed");
 			exit(1);

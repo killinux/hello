@@ -52,7 +52,7 @@ int main(int argc,char * argv[]){
 		if(numBytes<0){
 			perror("recv() failed");
        		 exit(1);
-		}else{
+		}else if(numBytes==0){
 			perror("recv() connection closed prematurely");
         	exit(1);
 		}
