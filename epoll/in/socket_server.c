@@ -63,8 +63,8 @@ void HandleTCPClient(int client_sockfd){
 		if(numBytesRcvd<0){
 			perror("recv() failed");
 		}
-		close(client_sockfd);
 	}
+	close(client_sockfd);
 	
 }
 

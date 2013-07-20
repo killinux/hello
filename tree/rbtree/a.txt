@@ -1,0 +1,29 @@
+item>t->item
+item>t->item
+item<t->item
+trace:t->l->key && t->r->key
+item>t->item
+item<t->item
+item>t->item
+item>t->item
+item>t->item
+trace:t->l->key && t->r->key
+item>t->item
+item>t->item
+item>t->item
+item<t->item
+item<t->item
+DispBTree:
+                                                              31 
+                                                            /   \
+                                                           /     \
+                                                          /       \
+                                                         /         \
+                                                         11          41+
+                                                                /   \
+                                                               /     \
+                                                              /       \
+                                                              39        79 
+                                                            /          \
+                                                           /            \
+                                                           36+            86+
