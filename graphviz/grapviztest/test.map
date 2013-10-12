@@ -12,7 +12,7 @@ Discarded input sections
  .note.GNU-stack
                 0x0000000000000000        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
  .note.GNU-stack
-                0x0000000000000000        0x0 /tmp/cciZ9oof.o
+                0x0000000000000000        0x0 /tmp/ccJ8wcVn.o
  .note.GNU-stack
                 0x0000000000000000        0x0 /usr/lib64/libc_nonshared.a(elf-init.oS)
  .note.GNU-stack
@@ -30,7 +30,7 @@ Linker script and memory map
 LOAD /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
 LOAD /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o
 LOAD /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
-LOAD /tmp/cciZ9oof.o
+LOAD /tmp/ccJ8wcVn.o
 LOAD /usr/lib/gcc/x86_64-redhat-linux/4.4.7/libgcc.a
 LOAD /usr/lib/gcc/x86_64-redhat-linux/4.4.7/libgcc_s.so
 LOAD /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/libc.so
@@ -136,7 +136,7 @@ LOAD /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
  *(.iplt)
  .iplt          0x0000000000000000        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
 
-.text           0x00000000004003e0      0x248
+.text           0x00000000004003e0      0x218
  *(.text.unlikely .text.*_unlikely)
  *(.text .stub .text.* .gnu.linkonce.t.*)
  .text          0x00000000004003e0       0x2c /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
@@ -145,59 +145,57 @@ LOAD /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
  *fill*         0x0000000000400423        0xd 90909090
  .text          0x0000000000400430       0x92 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
  *fill*         0x00000000004004c2        0x2 90909090
- .text          0x00000000004004c4       0x7d /tmp/cciZ9oof.o
-                0x00000000004004c4                test1
-                0x00000000004004d4                test2
-                0x00000000004004ee                heihei
-                0x00000000004004fe                haha
-                0x0000000000400518                main
- *fill*         0x0000000000400541        0xf 90909090
- .text          0x0000000000400550       0x99 /usr/lib64/libc_nonshared.a(elf-init.oS)
-                0x0000000000400550                __libc_csu_fini
-                0x0000000000400560                __libc_csu_init
- *fill*         0x00000000004005e9        0x7 90909090
- .text          0x00000000004005f0       0x36 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o
- *fill*         0x0000000000400626        0x2 90909090
- .text          0x0000000000400628        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
+ .text          0x00000000004004c4       0x53 /tmp/ccJ8wcVn.o
+                0x00000000004004c4                heihei
+                0x00000000004004d4                haha
+                0x00000000004004ee                main
+ *fill*         0x0000000000400517        0x9 90909090
+ .text          0x0000000000400520       0x99 /usr/lib64/libc_nonshared.a(elf-init.oS)
+                0x0000000000400520                __libc_csu_fini
+                0x0000000000400530                __libc_csu_init
+ *fill*         0x00000000004005b9        0x7 90909090
+ .text          0x00000000004005c0       0x36 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o
+ *fill*         0x00000000004005f6        0x2 90909090
+ .text          0x00000000004005f8        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
  *(.gnu.warning)
 
-.fini           0x0000000000400628        0xe
+.fini           0x00000000004005f8        0xe
  *(.fini)
- .fini          0x0000000000400628        0x4 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o
-                0x0000000000400628                _fini
- .fini          0x000000000040062c        0x5 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
- .fini          0x0000000000400631        0x5 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
-                0x0000000000400636                PROVIDE (__etext, .)
-                0x0000000000400636                PROVIDE (_etext, .)
-                0x0000000000400636                PROVIDE (etext, .)
+ .fini          0x00000000004005f8        0x4 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o
+                0x00000000004005f8                _fini
+ .fini          0x00000000004005fc        0x5 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
+ .fini          0x0000000000400601        0x5 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
+                0x0000000000400606                PROVIDE (__etext, .)
+                0x0000000000400606                PROVIDE (_etext, .)
+                0x0000000000400606                PROVIDE (etext, .)
 
-.rodata         0x0000000000400638       0x3c
+.rodata         0x0000000000400608       0x2e
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- .rodata.cst4   0x0000000000400638        0x4 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
-                0x0000000000400638                _IO_stdin_used
- *fill*         0x000000000040063c        0x4 00
- .rodata        0x0000000000400640        0x8 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
-                0x0000000000400640                __dso_handle
- .rodata        0x0000000000400648       0x2c /tmp/cciZ9oof.o
+ .rodata.cst4   0x0000000000400608        0x4 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
+                0x0000000000400608                _IO_stdin_used
+ *fill*         0x000000000040060c        0x4 00
+ .rodata        0x0000000000400610        0x8 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
+                0x0000000000400610                __dso_handle
+ .rodata        0x0000000000400618       0x1e /tmp/ccJ8wcVn.o
 
 .rodata1
  *(.rodata1)
 
-.eh_frame_hdr   0x0000000000400674       0x44
+.eh_frame_hdr   0x0000000000400638       0x34
  *(.eh_frame_hdr)
- .eh_frame_hdr  0x0000000000400674       0x44 /tmp/cciZ9oof.o
+ .eh_frame_hdr  0x0000000000400638       0x34 /tmp/ccJ8wcVn.o
 
-.eh_frame       0x00000000004006b8       0xfc
+.eh_frame       0x0000000000400670       0xbc
  *(.eh_frame)
- .eh_frame      0x00000000004006b8       0xb8 /tmp/cciZ9oof.o
- .eh_frame      0x0000000000400770       0x40 /usr/lib64/libc_nonshared.a(elf-init.oS)
+ .eh_frame      0x0000000000400670       0x78 /tmp/ccJ8wcVn.o
+ .eh_frame      0x00000000004006e8       0x40 /usr/lib64/libc_nonshared.a(elf-init.oS)
                                          0x58 (size before relaxing)
- .eh_frame      0x00000000004007b0        0x4 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o
+ .eh_frame      0x0000000000400728        0x4 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o
 
 .gcc_except_table
  *(.gcc_except_table .gcc_except_table.*)
-                0x00000000004007b4                . = (ALIGN (0x200000) - ((0x200000 - .) & 0x1fffff))
-                0x00000000006007b4                . = (0x200000 DATA_SEGMENT_ALIGN 0x1000)
+                0x000000000040072c                . = (ALIGN (0x200000) - ((0x200000 - .) & 0x1fffff))
+                0x000000000060072c                . = (0x200000 DATA_SEGMENT_ALIGN 0x1000)
 
 .eh_frame
  *(.eh_frame)
@@ -212,80 +210,80 @@ LOAD /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
  *(.tbss .tbss.* .gnu.linkonce.tb.*)
  *(.tcommon)
 
-.preinit_array  0x00000000006007b4        0x0
-                0x00000000006007b4                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x000000000060072c        0x0
+                0x000000000060072c                PROVIDE (__preinit_array_start, .)
  *(.preinit_array)
-                0x00000000006007b4                PROVIDE (__preinit_array_end, .)
+                0x000000000060072c                PROVIDE (__preinit_array_end, .)
 
-.init_array     0x00000000006007b4        0x0
-                0x00000000006007b4                PROVIDE (__init_array_start, .)
+.init_array     0x000000000060072c        0x0
+                0x000000000060072c                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  *(.init_array)
-                0x00000000006007b4                PROVIDE (__init_array_end, .)
+                0x000000000060072c                PROVIDE (__init_array_end, .)
 
-.fini_array     0x00000000006007b4        0x0
-                0x00000000006007b4                PROVIDE (__fini_array_start, .)
+.fini_array     0x000000000060072c        0x0
+                0x000000000060072c                PROVIDE (__fini_array_start, .)
  *(.fini_array)
  *(SORT(.fini_array.*))
-                0x00000000006007b4                PROVIDE (__fini_array_end, .)
+                0x000000000060072c                PROVIDE (__fini_array_end, .)
 
-.ctors          0x00000000006007b8       0x10
+.ctors          0x0000000000600730       0x10
  *crtbegin.o(.ctors)
- .ctors         0x00000000006007b8        0x8 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
+ .ctors         0x0000000000600730        0x8 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
  *crtbegin?.o(.ctors)
  *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
  *(SORT(.ctors.*))
  *(.ctors)
- .ctors         0x00000000006007c0        0x8 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o
+ .ctors         0x0000000000600738        0x8 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o
 
-.dtors          0x00000000006007c8       0x10
+.dtors          0x0000000000600740       0x10
  *crtbegin.o(.dtors)
- .dtors         0x00000000006007c8        0x8 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
+ .dtors         0x0000000000600740        0x8 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
  *crtbegin?.o(.dtors)
  *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
  *(SORT(.dtors.*))
  *(.dtors)
- .dtors         0x00000000006007d0        0x8 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o
-                0x00000000006007d0                __DTOR_END__
+ .dtors         0x0000000000600748        0x8 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o
+                0x0000000000600748                __DTOR_END__
 
-.jcr            0x00000000006007d8        0x8
+.jcr            0x0000000000600750        0x8
  *(.jcr)
- .jcr           0x00000000006007d8        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
- .jcr           0x00000000006007d8        0x8 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o
+ .jcr           0x0000000000600750        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
+ .jcr           0x0000000000600750        0x8 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o
 
 .data.rel.ro
  *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
  *(.data.rel.ro* .gnu.linkonce.d.rel.ro.*)
 
-.dynamic        0x00000000006007e0      0x190
+.dynamic        0x0000000000600758      0x190
  *(.dynamic)
- .dynamic       0x00000000006007e0      0x190 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
-                0x00000000006007e0                _DYNAMIC
+ .dynamic       0x0000000000600758      0x190 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
+                0x0000000000600758                _DYNAMIC
 
-.got            0x0000000000600970        0x8
+.got            0x00000000006008e8        0x8
  *(.got)
- .got           0x0000000000600970        0x8 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
+ .got           0x00000000006008e8        0x8 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
  *(.igot)
-                0x0000000000600978                . = (. DATA_SEGMENT_RELRO_END 0x18)
+                0x00000000006008f0                . = (. DATA_SEGMENT_RELRO_END 0x18)
 
-.got.plt        0x0000000000600978       0x28
+.got.plt        0x00000000006008f0       0x28
  *(.got.plt)
- .got.plt       0x0000000000600978       0x28 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
-                0x0000000000600978                _GLOBAL_OFFSET_TABLE_
+ .got.plt       0x00000000006008f0       0x28 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
+                0x00000000006008f0                _GLOBAL_OFFSET_TABLE_
  *(.igot.plt)
  .igot.plt      0x0000000000000000        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
 
-.data           0x00000000006009a0        0x4
+.data           0x0000000000600918        0x4
  *(.data .data.* .gnu.linkonce.d.*)
- .data          0x00000000006009a0        0x4 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
-                0x00000000006009a0                data_start
-                0x00000000006009a0                __data_start
- .data          0x00000000006009a4        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o
- .data          0x00000000006009a4        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
- .data          0x00000000006009a4        0x0 /tmp/cciZ9oof.o
- .data          0x00000000006009a4        0x0 /usr/lib64/libc_nonshared.a(elf-init.oS)
- .data          0x00000000006009a4        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o
- .data          0x00000000006009a4        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
+ .data          0x0000000000600918        0x4 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
+                0x0000000000600918                data_start
+                0x0000000000600918                __data_start
+ .data          0x000000000060091c        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o
+ .data          0x000000000060091c        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
+ .data          0x000000000060091c        0x0 /tmp/ccJ8wcVn.o
+ .data          0x000000000060091c        0x0 /usr/lib64/libc_nonshared.a(elf-init.oS)
+ .data          0x000000000060091c        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o
+ .data          0x000000000060091c        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
 
 .data1
  *(.data1)
@@ -299,19 +297,19 @@ LOAD /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
                 0x0000000000800000                PROVIDE (edata, .)
                 0x0000000000800000                __bss_start = .
 
-.bss            0x00000000006009a8       0x10
+.bss            0x0000000000600920       0x10
  *(.dynbss)
  .dynbss        0x0000000000000000        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
  *(.bss .bss.* .gnu.linkonce.b.*)
- .bss           0x00000000006009a8        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
- .bss           0x00000000006009a8        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o
- .bss           0x00000000006009a8       0x10 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
- .bss           0x00000000006009b8        0x0 /tmp/cciZ9oof.o
- .bss           0x00000000006009b8        0x0 /usr/lib64/libc_nonshared.a(elf-init.oS)
- .bss           0x00000000006009b8        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o
- .bss           0x00000000006009b8        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
+ .bss           0x0000000000600920        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o
+ .bss           0x0000000000600920        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o
+ .bss           0x0000000000600920       0x10 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
+ .bss           0x0000000000600930        0x0 /tmp/ccJ8wcVn.o
+ .bss           0x0000000000600930        0x0 /usr/lib64/libc_nonshared.a(elf-init.oS)
+ .bss           0x0000000000600930        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o
+ .bss           0x0000000000600930        0x0 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
  *(COMMON)
-                0x00000000006009b8                . = ALIGN ((. != 0x0)?0x8:0x1)
+                0x0000000000600930                . = ALIGN ((. != 0x0)?0x8:0x1)
 
 .lbss
  *(.dynlbss)
@@ -332,13 +330,13 @@ LOAD /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
 .lrodata
  *(.lrodata .lrodata.* .gnu.linkonce.lr.*)
 
-.ldata          0x0000000000a009b8        0x0
+.ldata          0x0000000000a00930        0x0
  *(.ldata .ldata.* .gnu.linkonce.l.*)
-                0x0000000000a009b8                . = ALIGN ((. != 0x0)?0x8:0x1)
-                0x0000000000a009b8                . = ALIGN (0x8)
-                0x0000000000a009b8                _end = .
-                0x0000000000a009b8                PROVIDE (end, .)
-                0x0000000000a009b8                . = DATA_SEGMENT_END (.)
+                0x0000000000a00930                . = ALIGN ((. != 0x0)?0x8:0x1)
+                0x0000000000a00930                . = ALIGN (0x8)
+                0x0000000000a00930                _end = .
+                0x0000000000a00930                PROVIDE (end, .)
+                0x0000000000a00930                . = DATA_SEGMENT_END (.)
 
 .stab
  *(.stab)
@@ -365,7 +363,7 @@ LOAD /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
  .comment       0x0000000000000000       0x2d /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o
  .comment       0x000000000000002c       0x2c /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o
                                          0x2d (size before relaxing)
- .comment       0x0000000000000000       0x2d /tmp/cciZ9oof.o
+ .comment       0x0000000000000000       0x2d /tmp/ccJ8wcVn.o
  .comment       0x0000000000000000       0x2d /usr/lib64/libc_nonshared.a(elf-init.oS)
  .comment       0x0000000000000000       0x2d /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o
  .comment       0x0000000000000000       0x2d /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
@@ -385,33 +383,33 @@ LOAD /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
 .debug_aranges  0x0000000000000000       0x30
  *(.debug_aranges)
  .debug_aranges
-                0x0000000000000000       0x30 /tmp/cciZ9oof.o
+                0x0000000000000000       0x30 /tmp/ccJ8wcVn.o
 
 .debug_pubnames
-                0x0000000000000000       0x43
+                0x0000000000000000       0x2f
  *(.debug_pubnames)
  .debug_pubnames
-                0x0000000000000000       0x43 /tmp/cciZ9oof.o
+                0x0000000000000000       0x2f /tmp/ccJ8wcVn.o
 
-.debug_info     0x0000000000000000      0x111
+.debug_info     0x0000000000000000       0xd5
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x0000000000000000      0x111 /tmp/cciZ9oof.o
+ .debug_info    0x0000000000000000       0xd5 /tmp/ccJ8wcVn.o
 
 .debug_abbrev   0x0000000000000000       0x3f
  *(.debug_abbrev)
- .debug_abbrev  0x0000000000000000       0x3f /tmp/cciZ9oof.o
+ .debug_abbrev  0x0000000000000000       0x3f /tmp/ccJ8wcVn.o
 
-.debug_line     0x0000000000000000       0x56
+.debug_line     0x0000000000000000       0x44
  *(.debug_line)
- .debug_line    0x0000000000000000       0x56 /tmp/cciZ9oof.o
+ .debug_line    0x0000000000000000       0x44 /tmp/ccJ8wcVn.o
 
 .debug_frame
  *(.debug_frame)
 
-.debug_str      0x0000000000000000       0xc5
+.debug_str      0x0000000000000000       0xb9
  *(.debug_str)
- .debug_str     0x0000000000000000       0xc5 /tmp/cciZ9oof.o
-                                         0xfe (size before relaxing)
+ .debug_str     0x0000000000000000       0xb9 /tmp/ccJ8wcVn.o
+                                         0xf2 (size before relaxing)
 
 .debug_loc
  *(.debug_loc)
@@ -435,7 +433,7 @@ LOAD /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
                 0x0000000000000000       0x12
  *(.debug_pubtypes)
  .debug_pubtypes
-                0x0000000000000000       0x12 /tmp/cciZ9oof.o
+                0x0000000000000000       0x12 /tmp/ccJ8wcVn.o
 
 .debug_ranges
  *(.debug_ranges)

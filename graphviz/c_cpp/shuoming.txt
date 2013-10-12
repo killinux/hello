@@ -1,0 +1,3 @@
+c diaoyong c++
+这的不好使，test里面 好使
+this is not used ,try the folder test
