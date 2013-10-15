@@ -4,6 +4,28 @@
 #include <ngx_config.h>
 #include <ngx_core.h>
 #include <ngx_http.h>
+#include <time.h>
+
+#define DEBUG_LOG( str ) log_append_to_file("/root/hellogit/hello/graphviz/nginx/mymodule/mylog/test.log", str,__FILE__,__LINE__ );  
+
+void log_append_to_file(char* filename,char* str,char* sourceFile,int fileLine)
+{
+    time_t t;
+    time(&t);
+    struct tm* tp= localtime(&t);
+//  printf("%x\n",tp);
+    char now_str[100];
+    strftime(now_str, 100, "%Y-%m-%d %H:%M:%S", tp);
+
+    FILE *fo;
+    fo = fopen(filename, "a");
+    if (fo == 0) {
+        return;
+    }
+
+    fprintf(fo, "%s %s(:%d):%s\r\n",now_str,sourceFile,fileLine, str);
+    fclose(fo);
+}
 /* Module config */
 typedef struct {
     ngx_str_t  ed;
@@ -53,6 +75,7 @@ ngx_module_t  ngx_http_echo_module = {
 static ngx_int_t
 ngx_http_echo_handler(ngx_http_request_t *r)
 {
+	DEBUG_LOG("haoning----ngx_http_echo_handler");
     ngx_int_t rc;
     ngx_buf_t *b;
     ngx_chain_t out;
@@ -68,6 +91,7 @@ ngx_http_echo_handler(ngx_http_request_t *r)
     r->headers_out.content_length_n = elcf->ed.len;
     if(r->method == NGX_HTTP_HEAD)
     {
+		DEBUG_LOG("haoning----ngx_http_echo_handlerr---r->method == NGX_HTTP_HEAD");
         rc = ngx_http_send_header(r);
         if(rc != NGX_OK)
         {
@@ -96,10 +120,14 @@ ngx_http_echo_handler(ngx_http_request_t *r)
 static char *
 ngx_http_echo(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
 {
+	DEBUG_LOG("haoning ------ngx_http_echo->>>>> init");
     ngx_http_core_loc_conf_t  *clcf;
     clcf = ngx_http_conf_get_module_loc_conf(cf, ngx_http_core_module);
+	DEBUG_LOG("haoning -----------------------ngx_http_echo->>>>> ngx_http_conf_get_module_loc_conf");
     clcf->handler = ngx_http_echo_handler;
+	DEBUG_LOG("haoning -----------------------ngx_http_echo->>>>> handler");
     ngx_conf_set_str_slot(cf,cmd,conf);
+	DEBUG_LOG("haoning -----------------------ngx_http_echo->>>>> ngx_conf_set_str_slot");
     return NGX_CONF_OK;
 }
 static void *
