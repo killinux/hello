@@ -5,27 +5,8 @@
 #include <ngx_core.h>
 #include <ngx_http.h>
 #include <time.h>
+#include "haolog.h"
 
-#define DEBUG_LOG( str ) log_append_to_file("/root/hellogit/hello/graphviz/nginx/mymodule/mylog/test.log", str,__FILE__,__LINE__ );  
-
-void log_append_to_file(char* filename,char* str,char* sourceFile,int fileLine)
-{
-    time_t t;
-    time(&t);
-    struct tm* tp= localtime(&t);
-//  printf("%x\n",tp);
-    char now_str[100];
-    strftime(now_str, 100, "%Y-%m-%d %H:%M:%S", tp);
-
-    FILE *fo;
-    fo = fopen(filename, "a");
-    if (fo == 0) {
-        return;
-    }
-
-    fprintf(fo, "%s %s(:%d):%s\r\n",now_str,sourceFile,fileLine, str);
-    fclose(fo);
-}
 /* Module config */
 typedef struct {
     ngx_str_t  ed;
@@ -120,19 +101,17 @@ ngx_http_echo_handler(ngx_http_request_t *r)
 static char *
 ngx_http_echo(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
 {
-	DEBUG_LOG("haoning ------ngx_http_echo->>>>> init");
+	DEBUG_LOG("haoning --ngx_http_echo->>>>> init");
     ngx_http_core_loc_conf_t  *clcf;
     clcf = ngx_http_conf_get_module_loc_conf(cf, ngx_http_core_module);
-	DEBUG_LOG("haoning -----------------------ngx_http_echo->>>>> ngx_http_conf_get_module_loc_conf");
     clcf->handler = ngx_http_echo_handler;
-	DEBUG_LOG("haoning -----------------------ngx_http_echo->>>>> handler");
     ngx_conf_set_str_slot(cf,cmd,conf);
-	DEBUG_LOG("haoning -----------------------ngx_http_echo->>>>> ngx_conf_set_str_slot");
     return NGX_CONF_OK;
 }
 static void *
 ngx_http_echo_create_loc_conf(ngx_conf_t *cf)
 {
+	DEBUG_LOG("haoning --ngx_http_echo_create_loc_conf");
     ngx_http_echo_loc_conf_t  *conf;
     conf = ngx_pcalloc(cf->pool, sizeof(ngx_http_echo_loc_conf_t));
     if (conf == NULL) {
@@ -145,6 +124,7 @@ ngx_http_echo_create_loc_conf(ngx_conf_t *cf)
 static char *
 ngx_http_echo_merge_loc_conf(ngx_conf_t *cf, void *parent, void *child)
 {
+	DEBUG_LOG("haoning --ngx_http_echo_merge_loc_conf");
     ngx_http_echo_loc_conf_t *prev = parent;
     ngx_http_echo_loc_conf_t *conf = child;
     ngx_conf_merge_str_value(conf->ed, prev->ed, "");
