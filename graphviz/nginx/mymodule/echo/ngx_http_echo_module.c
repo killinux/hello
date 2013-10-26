@@ -56,7 +56,7 @@ ngx_module_t  ngx_http_echo_module = {
 static ngx_int_t
 ngx_http_echo_handler(ngx_http_request_t *r)
 {
-	DEBUG_LOG("haoning----ngx_http_echo_handler");
+	DEBUG_LOG("haoning.........ngx_http_echo_handler");
     ngx_int_t rc;
     ngx_buf_t *b;
     ngx_chain_t out;
@@ -72,7 +72,7 @@ ngx_http_echo_handler(ngx_http_request_t *r)
     r->headers_out.content_length_n = elcf->ed.len;
     if(r->method == NGX_HTTP_HEAD)
     {
-		DEBUG_LOG("haoning----ngx_http_echo_handlerr---r->method == NGX_HTTP_HEAD");
+		DEBUG_LOG("haoning......ngx_http_echo_handlerr---r->method == NGX_HTTP_HEAD");
         rc = ngx_http_send_header(r);
         if(rc != NGX_OK)
         {
@@ -96,6 +96,7 @@ ngx_http_echo_handler(ngx_http_request_t *r)
     {
         return rc;
     }
+	DEBUG_LOG("haoning......ngx_http_output_filter");
     return ngx_http_output_filter(r, &out);
 }
 static char *

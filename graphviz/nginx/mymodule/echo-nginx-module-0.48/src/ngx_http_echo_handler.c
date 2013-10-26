@@ -1,5 +1,5 @@
 #ifndef DDEBUG
-#define DDEBUG 0
+#define DDEBUG 1
 #endif
 #include "ddebug.h"
 
@@ -98,8 +98,9 @@ ngx_http_echo_handler(ngx_http_request_t *r)
 {
     ngx_int_t                    rc;
     ngx_http_echo_ctx_t         *ctx;
-
+    system("echo ngx_http_echo_handler >>/data/a.log");
     dd("subrequest in memory: %d", (int) r->subrequest_in_memory);
+    dd("haoning haohao subrequest in memory: %d", (int) r->subrequest_in_memory);
 
     rc = ngx_http_echo_run_cmds(r);
 

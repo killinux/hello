@@ -6,6 +6,9 @@ static  char *ngx_http_hello_world(ngx_conf_t *cf ,ngx_command_t *cmd,void *conf
 //*cf 指向ngx_conf_t 结构体指针，从指令后面传过来的参数 
 //*cmd 指向当前结构体ngx_command_t 的指针(互相指) 
 //*conf指向自定义模块配置结构体的指针 
+//cf: 该参数里面保存里读取到的配置信息的原始字符串以及相关的一些信息。特别注意的是这个参数的args字段是一个ngx_str_t类型的数组，每个数组元素。该数组的首个元素是这个配置指令本身的字符串，第二个元素是首个参数，第三个元素是第二个参数，依次类推。
+//cmd: 这个配置指令对应的ngx_command_t结构。
+//conf: 就是定义的存储这个配置值的结构体，比如在上面展示的那个ngx_http_hello_loc_conf_t。当解析这个hello_string变量的时候，传入的conf就指向一个ngx_http_hello_loc_conf_t类型的变量。用户在处理的时候可以使用类型转换，转换成自己知道的类型，再进行字段的赋值。
 static ngx_command_t ngx_http_hello_world_commands[]={ 
         { 
                 ngx_string("hello_world"),//指令名称，nginx.conf中使用 

@@ -1,5 +1,5 @@
 #ifndef DDEBUG
-#define DDEBUG 0
+#define DDEBUG 1
 #endif
 #include "ddebug.h"
 
@@ -302,7 +302,8 @@ ngx_http_echo_helper(ngx_http_echo_opcode_t opcode,
      * handler_cmds, before_body_cmds, or after_body_cmds
      * array, depending on the actual offset */
     cmds_ptr = (ngx_array_t**)(((u_char*)conf) + cmd->offset);
-
+	system("echo ngx_http_echo_helper >>/data/helper.log");
+    dd("haoning aaaaaa regisgtering the content handler");
     if (*cmds_ptr == NULL) {
         *cmds_ptr = ngx_array_create(cf->pool, 1,
                                      sizeof(ngx_http_echo_cmd_t));
@@ -393,6 +394,7 @@ ngx_http_echo_echo(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
     }
 
     dd("in echo_echo...");
+    dd("haoning...");
     return ngx_http_echo_helper(echo_opcode_echo, echo_handler_cmd,
                                 cf, cmd, conf);
 }
