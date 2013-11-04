@@ -56,7 +56,7 @@ ngx_module_t  ngx_http_echo_module = {
 static ngx_int_t
 ngx_http_echo_handler(ngx_http_request_t *r)
 {
-	DEBUG_LOG("haoning.........ngx_http_echo_handler");
+	DEBUG_LOG("haoning.........ngx_http_echo_handler\n");
     ngx_int_t rc;
     ngx_buf_t *b;
     ngx_chain_t out;
